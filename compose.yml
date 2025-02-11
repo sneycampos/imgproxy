@@ -20,7 +20,7 @@ services:
     restart: unless-stopped
     environment:
       IMGPROXY_AUTO_WEBP: true
-      IMGPROXY_MAX_SRC_RESOLUTION: 10
+      IMGPROXY_MAX_SRC_RESOLUTION: 50
       IMGPROXY_LOG_LEVEL: "info"
     ports:
       - "8080:8080"

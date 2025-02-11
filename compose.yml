@@ -1,0 +1,28 @@
+services:
+
+  caddy:
+    image: caddy:latest
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - caddy_data:/data
+      - caddy_config:/config
+
+  imgproxy:
+    image: ghcr.io/imgproxy/imgproxy:latest
+    restart: unless-stopped
+    environment:
+      IMGPROXY_AUTO_WEBP: true
+      IMGPROXY_MAX_SRC_RESOLUTION: 10
+      IMGPROXY_LOG_LEVEL: "info"
+    ports:
+      - "8080:8080"
+
+volumes:
+  caddy_data:
+  caddy_config:

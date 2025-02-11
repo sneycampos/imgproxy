@@ -1,0 +1,10 @@
+{
+	acme_ca https://acme-staging-v02.api.letsencrypt.org/directory
+}
+
+imgproxy.local {
+    tls {
+        dns cloudflare {env.CLOUDFLARE_API_TOKEN}
+    }
+    reverse_proxy imgproxy:8080
+}
